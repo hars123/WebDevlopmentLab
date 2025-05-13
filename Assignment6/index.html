@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .form-container {
+            padding: 20px;
+            width: 400px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Resume Generator</h2>
+        <input type="text" id="fullName" placeholder="Full Name">
+        <input type="text" id="email" placeholder="Email">
+        <input type="text" id="phone" placeholder="Phone Number">
+        <input type="text" id="address" placeholder="Address">
+        <textarea id="skills" placeholder="Skills (comma separated)"></textarea>
+        <textarea id="experience" placeholder="Experience"></textarea>
+        <textarea id="education" placeholder="Education"></textarea>
+        <button onclick="generatePDF()">Download Resume (PDF)</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+        async function generatePDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            doc.setFontSize(12);
+
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            const skills = document.getElementById('skills').value;
+            const experience = document.getElementById('experience').value;
+            const education = document.getElementById('education').value;
+
+            doc.text(`Full Name: ${fullName}`, 10, 10);
+            doc.text(`Email: ${email}`, 10, 20);
+            doc.text(`Phone: ${phone}`, 10, 30);
+            doc.text(`Address: ${address}`, 10, 40);
+
+            doc.text(`Skills:`, 10, 50);
+            doc.text(skills.split(',').join(', '), 10, 60);
+
+            doc.text(`Experience:`, 10, 70);
+            doc.text(experience, 10, 80);
+
+            doc.text(`Education:`, 10, 100);
+            doc.text(education, 10, 110);
+
+            doc.save(`${fullName}_Resume.pdf`);
+        }
+    </script>
+</body>
+</html>
+ 

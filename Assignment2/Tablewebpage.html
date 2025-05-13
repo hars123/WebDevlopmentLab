@@ -1,0 +1,79 @@
+""<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplication Table Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+        }
+        .result p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Multiplication Table Generator</h2>
+        <input type="number" id="numberInput" placeholder="Enter a number">
+        <button onclick="generateTable()">Generate Table</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function generateTable() {
+            const number = parseInt(document.getElementById('numberInput').value);
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '';
+            if (!isNaN(number)) {
+                for (let i = 1; i <= 10; i++) {
+                    const line = document.createElement('p');
+                    line.textContent = `${number} x ${i} = ${number * i}`;
+                    resultDiv.appendChild(line);
+                }
+            } else {
+                resultDiv.innerHTML = '<p>Please enter a valid number.</p>';
+            }
+        }
+    </script>
+</body>
+</html>
+    ""
